@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="static/js/jquery-2.0.3.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var ctx = [[${#httpServletRequest.getContextPath()}]];
+        console.warn(ctx)
+        /*]]>*/
+    </script>
+    <script>
+
+        function getGirlList() {
+            $.ajax({
+                url: ctx + "/girls",
+                type: "get",
+                dataType: "",
+                success: function (data) {
+                    $('#getGirlList_data').append(JSON.stringify(data));
+
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+
+<fieldset>
+    <button value="查询所有" onclick="getGirlList()">查询所有</button>
+    <textarea id="getGirlList_data"></textarea>
+    <img src="static/img/test.png"/>
+</fieldset>
+<br/>
+<fieldset>
+    <p>${session.sessionValue}: <span th:text="${session.sessionValue}">No Value</span></p>
+    <p>${#locale.country}:<span th:text="${#locale.country}">US</span></p>
+    <p>${#strings.isEmpty(contextValue)}: <span th:text="${#strings.isEmpty(contextValue)}">True</span></p>
+    <p>${#strings.toUpperCase('javabeat')}: <span th:text="${#strings.toUpperCase('javabeat')}">None</span></p>
+    <p>${#numbers.formatInteger(100000,3,'POINT')}: <span th:text="${#numbers.formatInteger(100000,3,'POINT')}">0</span>
+    </p>
+    <p>${#httpServletRequest.getContextPath()}: <span th:text="${#httpServletRequest.getContextPath()}">0</span></p>
+    <br/>
+
+    <h1>基础对象</h1>
+    <h2>#ctx
+        :ctx对象继承org.thymeleaf.context.IContext或者org.thymeleaf.context.IWebContext，取决于当前环境是不是web环境。如果程序集成了spring，那么将会是org.thymeleaf.spring[3|4].context.SpringWebContext。</h2>
+    <p>${#ctx.locale}: <span th:text="${#ctx.locale}">0</span></p>
+    <p>${#ctx.variables}: <span th:text="${#ctx.variables}">0</span></p>
+    <p>${#ctx.applicationAttributes}: <span th:text="${#ctx.applicationAttributes}">0</span></p>
+    <p>${#ctx.httpServletRequest}: <span th:text="${#ctx.httpServletRequest}">0</span></p>
+    <p>${#ctx.httpServletResponse}: <span th:text="${#ctx.httpServletResponse}">0</span></p>
+    <p>${#ctx.httpSession}: <span th:text="${#ctx.httpSession}">0</span></p>
+    <p>${#ctx.requestAttributes}: <span th:text="${#ctx.requestAttributes}">0</span></p>
+    <p>${#ctx.requestParameters}: <span th:text="${#ctx.requestParameters}">0</span></p>
+    <p>${#ctx.servletContext}: <span th:text="${#ctx.servletContext}">0</span></p>
+    <p>${#ctx.sessionAttributes}: <span th:text="${#ctx.sessionAttributes}">0</span></p>
+    <h2>#locale：Java.util.Locale对象的访问. </h2>
+    <h2>#vars :org.thymeleaf.context的实例。访问VariablesMap所有上下文中的变量（包含本笃和ctx.variables中的）。</h2>
+    <p>${#vars.get('foo')}: <span th:text="${#vars.get('foo')}">0</span></p>
+    <p>${#vars.containsKey('foo')}: <span th:text="${#vars.containsKey('foo')}">0</span></p>
+    <p>${#vars.size()}: <span th:text="${#vars.size()}">0</span></p>
+    <br/>
+
+    <h1>web环境中访问request/session等属性</h1>
+    <h2>application：获取应用程序/ servlet上下文属性。</h2>
+    <p>${application.foo}: <span th:text="${application.foo}">0</span></p>
+    <p>${application.size()}: <span th:text="${application.size()}">0</span></p>
+    <p>${application.isEmpty()}: <span th:text="${application.isEmpty()}">0</span></p>
+    <p>${application.containsKey('foo')}: <span th:text="${application.containsKey('foo')}">0</span></p>
+    <br/>
+
+    <h1>web环境对象</h1>
+    <h2>#httpServletRequest :javax.servlet.http.HttpServletRequest对象实例。</h2>
+    <p>${#httpServletRequest.getAttribute('foo')}: <span th:text="${#httpServletRequest.getAttribute('foo')}">0</span>
+    </p>
+    <p>${#httpServletRequest.getParameter('foo')}: <span th:text="${#httpServletRequest.getParameter('foo')}">0</span>
+    </p>
+    <p>${#httpServletRequest.getContextPath()}: <span th:text="${#httpServletRequest.getContextPath()}">0</span></p>
+    <!--<p>${#httpServletRequest.getRequestName()}: <span th:text="${#httpServletRequest.getRequestName()}">0</span></p>-->
+    <h2>#httpSession：javax.servlet.http.HttpSession实例。</h2>
+    <p>${#httpSession.getAttribute('foo')}: <span th:text="${#httpSession.getAttribute('foo')}">0</span></p>
+    <p>${#httpSession.id}: <span th:text="${#httpSession.id}">0</span></p>
+    <p>${#httpSession.lastAccessedTime}: <span th:text="${#httpSession.lastAccessedTime}">0</span></p>
+    <br/>
+
+    <h1>spring环境对象</h1>
+    <h2>#themes : 提供和“ spring:theme JSP tag.”同样的功能。</h2>
+    <p>${#themes.code('foo')}: <span th:text="${#themes.code('foo')}">0</span></p>
+
+    <br/>
+    <h1>直接访问spring注册对象</h1>
+    <!--<p>${@authService.getUserName()}: <span th:text="${@authService.getUserName()}">0</span></p>-->
+
+
+</fieldset>
+</body>
+</html>
