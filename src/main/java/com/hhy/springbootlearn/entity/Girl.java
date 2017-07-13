@@ -1,4 +1,4 @@
-package com.hhy.springbootlearn.domain;
+package com.hhy.springbootlearn.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

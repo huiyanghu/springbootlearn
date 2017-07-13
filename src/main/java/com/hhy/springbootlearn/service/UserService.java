@@ -1,12 +1,10 @@
 package com.hhy.springbootlearn.service;
 
-import com.hhy.springbootlearn.domain.User;
-
-import java.util.Map;
+import com.hhy.springbootlearn.entity.SysUser;
 
 /**
  * Created by hhy on 17/7/11.
  */
 public interface UserService {
-    public User login(String userName, String password);
+    public SysUser findByUserName(String userName);
 }

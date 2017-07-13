@@ -12,7 +12,7 @@ public class ErrorInfo<T> {
     private String msg;
     private String url;
     private T data;
-    private Integer isSuccess;
+    private Integer isSuccess=0;
 
     public Integer getCode() {
         return code;

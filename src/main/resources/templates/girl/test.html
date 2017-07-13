@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <script type="text/javascript" src="static/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" th:src="'static/js/jquery-2.0.3.min.js?version='+${@version}"></script>
     <script th:inline="javascript">
         /*<![CDATA[*/
         var ctx = [[${#httpServletRequest.getContextPath()}]];
@@ -26,7 +26,12 @@
     </script>
 </head>
 <body>
-
+<fieldset title="Global constants">
+    <p>${application.version}: <span th:text="${application.version}">0</span></p>
+    <p>${version}: <span th:text="${version}">0</span></p>
+    <p>${#vars.get('version')}: <span th:text="${#vars.get('version')}">0</span></p>
+    <p>${@authService.getUserName()}: <span th:text="'123'+${@version}">0</span></p>
+</fieldset>
 <fieldset>
     <button value="查询所有" onclick="getGirlList()">查询所有</button>
     <textarea id="getGirlList_data"></textarea>

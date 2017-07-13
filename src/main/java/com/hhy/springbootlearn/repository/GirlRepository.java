@@ -1,6 +1,6 @@
 package com.hhy.springbootlearn.repository;
 
-import com.hhy.springbootlearn.domain.Girl;
+import com.hhy.springbootlearn.entity.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

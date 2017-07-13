@@ -1,18 +1,16 @@
 package com.hhy.springbootlearn.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.hhy.springbootlearn.GirlProperties;
-import com.hhy.springbootlearn.domain.Girl;
+import com.hhy.springbootlearn.entity.Girl;
 import com.hhy.springbootlearn.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by hhy on 17/7/10.
@@ -47,7 +45,7 @@ public class TestController {
         return "id:" + myId;
     }
 
-    @RequestMapping(value = {"/hello", "/hi"}, method = RequestMethod.GET)
+    //@RequestMapping(value = {"/hello", "/hi"}, method = RequestMethod.GET)
     public String sayGirl() {
         return girlProperties.getCupSize() + girlProperties.getAge();
     }
@@ -116,7 +114,7 @@ public class TestController {
 
     @RequestMapping("/toTest")
     public ModelAndView toTest(HttpSession session){
-        System.out.println(1/0);
+
         ModelAndView mv = new ModelAndView();
         mv.setViewName("girl/test");
         return mv;

@@ -4,10 +4,16 @@ spring:
   profiles:
     active: dev
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dbgirl
-    username: huhuiyang
-    password: CaptainHhy@163.com
+    primary:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/dbgirl
+      username: huhuiyang
+      password: CaptainHhy@163.com
+      type: com.alibaba.druid.pool.DruidDataSource
+      initialSize: 6
+      minIdle: 6
+      maxActive: 21
+      maxWait: 60000
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,3 +29,6 @@ spring:
     mode: HTML5
     #prefix: classpath:/templates/
     suffix: .html
+global:
+  constants:
+    version: ${random.int[1000,10000]}
